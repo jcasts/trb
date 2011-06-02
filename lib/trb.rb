@@ -1,4 +1,6 @@
 require 'rubygems'
+
+gem 'rdoc'
 require 'rdoc/rdoc'
 
 # TODO:
@@ -58,5 +60,6 @@ class TRb
   # Runs the trb command.
 
   def self.run argv=ARGV
+    require 'trb/core_ext'
   end
 end

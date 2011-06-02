@@ -5,4 +5,5 @@ README.rdoc
 Rakefile
 bin/trb
 lib/trb.rb
+lib/trb/core_ext.rb
 test/test_trb.rb
