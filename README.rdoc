@@ -12,7 +12,11 @@ An exploratory alternative to rake.
 
 == SYNOPSIS:
 
-  $ trb taks_name
+  $ trb my_class:class_method arg1 arg2
+
+  $ trb my_module:my_class:class_method
+
+  $ trb my_class.inst_method arg1 arg2
 
 == REQUIREMENTS:
 
