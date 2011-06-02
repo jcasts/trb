@@ -4,9 +4,13 @@ require 'rubygems'
 require 'hoe'
 
 Hoe.spec 'trb' do
-  # developer('FIX', 'FIX@example.com')
+  developer('Jeremie Castagna', 'yaksnrainbows@gmail.com')
 
-  # self.rubyforge_name = 'trbx' # if different than 'trb'
+  self.readme_file      = "README.rdoc"
+  self.history_file     = "History.rdoc"
+  self.extra_rdoc_files = FileList['*.rdoc']
+
+  self.extra_deps << ['rdoc', '~>3.3']
 end
 
 # vim: syntax=ruby
