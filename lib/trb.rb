@@ -30,7 +30,11 @@ class TRb
   end
 
   self.tasks        = {}
-  self.files_loaded = []
+  self.files_loaded = {}
+
+
+  RDOC = RDoc::RDoc.new
+  RDOC.options = RDoc::Options.new
 
 
   ##
@@ -42,11 +46,36 @@ class TRb
 
 
   ##
+  # Check if a file has already been loaded.
+
+  def self.file_loaded? path
+    self.files_loaded[path]
+  end
+
+
+  ##
   # Load any number of files to build tasks from.
 
   def self.load_files *files
-    rdoc = RDoc::RDoc.new
-    rdoc.options = RDoc::Options.new
+    files.map! do |path|
+      path = File.expand_path path
+      path = "#{path}.rb" unless File.file? path
+      path
+    end
+
+    RDOC.parse_files(files).each do |top_lvl|
+      build_tasks_from_rdoc top_lvl
+      files_loaded[top_lvl.full_name] = true
+    end
+
+    true
+  end
+
+
+  ##
+  # Recursively build tasks from a RDoc::TopLevel instance.
+
+  def self.build_tasks_from_rdoc top_lvl
     
   end
 

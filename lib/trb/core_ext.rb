@@ -4,11 +4,7 @@ module Kernel
 
   def self.require str
     return unless rb_require(str) && defined?(TRb)
-
-    path = File.expand_path str
-    path = "#{path}.rb" unless File.file? path
-
-    TRb.load_files path if File.file? path
+    TRb.load_files str
   end
 end
 
