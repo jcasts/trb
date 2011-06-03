@@ -25,27 +25,29 @@ class TRb
   DEFAULT_TASK_FILES = %w{*.t.rb trb/*.rb trb/*.t.rb tasks/*.rb tasks/*.t.rb}
 
 
-  attr_accessor :tasks, :files_loaded
+  class << self
+    attr_accessor :tasks, :files_loaded
+  end
+
+  self.tasks        = {}
+  self.files_loaded = []
 
 
   ##
   # Creates a TRb instance with specified glob or files to load.
 
   def initialize files=nil
-    @tasks        = {}
-    @files_loaded = []
-
-    @rdoc         = RDoc::RDoc.new
-    @rdoc.options = RDoc::Options.new
-
-    self.load_files files.to_a.concat(DEFAULT_TASK_FILES)
+    self.class.load_files files.to_a.concat(DEFAULT_TASK_FILES)
   end
 
 
   ##
-  # Load any number of files to run.
+  # Load any number of files to build tasks from.
 
-  def load_files *files
+  def self.load_files *files
+    rdoc = RDoc::RDoc.new
+    rdoc.options = RDoc::Options.new
+    
   end
 
 
